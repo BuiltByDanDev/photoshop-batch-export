@@ -13,6 +13,27 @@ This Photoshop script automates adding an even white border around images of var
 -   Exports final images as JPEG with quality 6
 -   Creates a custom export folder inside the source folder
 
+## Add Script to Photoshop's Scripts Menu
+
+To make the script available under **`File > Scripts`** in Photoshop:
+
+1. Move the script file `BatchAddWhiteBorders.jsx` to the appropriate scripts folder:
+
+    - **Windows:**
+
+        ```
+        C:\Program Files\Adobe\Adobe Photoshop [version]\Presets\Scripts\
+        ```
+
+    - **macOS:**
+        ```
+        /Applications/Adobe Photoshop [version]/Presets/Scripts/
+        ```
+
+2. Restart Photoshop.
+
+The script should appear under `File > Scripts` for quick access.
+
 ## How to Use
 
 1. Open Photoshop and run the script.
