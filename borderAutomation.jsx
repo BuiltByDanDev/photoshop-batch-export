@@ -30,7 +30,7 @@ function closestRatio(ratio) {
     return null;
 }
 
-function batchAddWhiteBorders() {
+function borderAutomation() {
     var inputFolder = Folder.selectDialog("Select folder with images");
     if (!inputFolder) return;
 
@@ -134,4 +134,4 @@ function batchAddWhiteBorders() {
     alert("Image export complete!");
 }
 
-batchAddWhiteBorders();
+borderAutomation();
