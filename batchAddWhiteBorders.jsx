@@ -2,13 +2,16 @@
 
 var FIXED_WIDTH = 2160;
 var BORDER = 30;
-var JPEG_QUALITY = 6; // 0–12 scale
-var TOLERANCE = 0.05; // 5% tolerance for ratio matching
+var TOLERANCE = 0.02; // 2% tolerance for ratio matching
 
 var RATIOS = {
-    "3:2 (landscape)": 3 / 2,
-    "2:3 (portrait)": 2 / 3,
-    "3:4 (Instagram portrait)": 3 / 4
+    "3x2 (Landscape)": 3 / 2,
+    "2x3 (Portrait)": 2 / 3,
+    "3x4 (New Instagram Portrait)": 3 / 4,
+    "4x5 (Instagram Default)": 4 / 5,
+    "16x9 (Widescreen)": 16 / 9,
+    "16x10 (Creative Wide)": 16 / 10,
+    "65x24 (XPan)": 6.5 / 2.4
 };
 
 function closestRatio(ratio) {
@@ -38,9 +41,26 @@ function batchAddWhiteBorders() {
     }
 
     var outputFolder = new Folder(inputFolder + "/" + folderName);
-    if (!outputFolder.exists) outputFolder.create();
+    var folderSuffix = 1;
 
-    var files = inputFolder.getFiles(/\.(jpg|jpeg|png|tif|psd)$/i);
+    while(outputFolder.exists) {
+        outputFolder = new Folder(inputFolder + "/" + folderName + "_" + folderSuffix);
+        folderSuffix++
+    }
+
+    outputFolder.create();
+
+    alert(inputFolder + '/' + folderName + ' already exists. ' + folderName + '_' + folderSuffix + ' created.');
+
+    var exportQuality = prompt("Enter image quality (as a percentage). Range 0 to 100", "80");
+
+    // Clamp to valid range if necessary
+    if (isNaN(exportQuality) || exportQuality < 0 || exportQuality > 100) {
+        alert("Invalid input. Defaulting to 80.");
+        exportQuality = 80;
+    }
+
+    var files = inputFolder.getFiles(/\.(jpg|jpeg)$/i);
 
     for (var i = 0; i < files.length; i++) {
         var file = files[i];
@@ -103,7 +123,7 @@ function batchAddWhiteBorders() {
         exportOptions.includeProfile = false;
         exportOptions.interlaced = false;
         exportOptions.optimized = true;
-        exportOptions.quality = Math.min(100, Math.max(0, JPEG_QUALITY * 8.33));
+        exportOptions.quality = Number(exportQuality);
 
         var exportFile = new File(outputFolder + "/" + newDoc.name + ".jpg");
         newDoc.exportDocument(exportFile, ExportType.SAVEFORWEB, exportOptions);
