@@ -117,7 +117,7 @@ function borderAutomation() {
         newDoc.flatten();
         newDoc.resizeCanvas(TARGET_WIDTH, TARGET_HEIGHT, AnchorPosition.TOPLEFT);
 
-        // Export as JPEG using Export As
+        // Export
         var exportOptions = new ExportOptionsSaveForWeb();
         exportOptions.format = SaveDocumentType.JPEG;
         exportOptions.includeProfile = false;
