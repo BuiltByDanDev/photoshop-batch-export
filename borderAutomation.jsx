@@ -36,8 +36,8 @@ function borderAutomation() {
 
     var folderName = prompt("Enter the name for the export folder:", "New Folder");
     if (!folderName) {
-        alert("No folder name entered. Exiting.");
-        return;
+        alert("No folder name entered. Defaulting to: New Folder.");
+        folderName = "New Folder";
     }
 
     var outputFolder = new Folder(inputFolder + "/" + folderName);
