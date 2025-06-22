@@ -56,7 +56,3 @@ The script should appear under `File > Scripts` for quick access.
 4. Input image quality percentage (recommended default is 80).
 5. The script processes each image, skipping those that don’t match supported ratios.
 6. Exported images will have white borders and be saved as JPEG in the export folder.
-
-## Requirements
-
--   Adobe Photoshop with JavaScript scripting enabled.
